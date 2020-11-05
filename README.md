@@ -23,6 +23,8 @@ This has been developed with ES5 JavaScript, CSS3, and HTML5.
 
 # User
 
-Visit the following web page
+Visit the following web page  
+https://saunderseddie.github.io/myDemoCRUD/
 
-# Source Code
+# Source Code  
+https://github.com/SaundersEddie/myDemoCRUD
