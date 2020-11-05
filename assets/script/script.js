@@ -3,13 +3,15 @@
 var selectedRow = null;
 
 function onFormSubmit() {
-    var formData = readFormData();
-    if (selectedRow === null) { 
-        insertNewRecords(formData);
-    } else {
-        updateRecord(formData);
+    if (validate()) {
+       var formData = readFormData();
+        if (selectedRow === null) { 
+            insertNewRecords(formData);
+        } else {
+            updateRecord(formData);
+        }
+        resetForm();
     }
-    resetForm();
 }
 
 function readFormData() {
@@ -28,6 +30,20 @@ function resetForm () {
     document.getElementById("empSalary").value="";
     document.getElementById("empLocation").value="";
     selectedRow = null;
+}
+
+function validate() {
+    isValid=true;
+    if (document.getElementById("empFullName").value === "") {
+        isValid=false;
+        document.getElementById("fullNameValidationError").classList.remove("hide");
+    } else {
+        isValid=true;
+        if (!document.getElementById("fullNameValidationError").classList.contains("hide")) {
+            document.getElementById("fullNameValidationError").classList.add("hide");
+        }
+    }
+    return isValid;
 }
 // CRUD Operations
 function insertNewRecords(data) {
