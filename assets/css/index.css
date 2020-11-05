@@ -19,7 +19,7 @@ table {
   border-collapse: collapse;
 }
 
-table.list {
+table.empList {
   width: 100%;
 }
 
@@ -31,7 +31,7 @@ th {
 }
 
 tr:nth-child(even),
-table.list thead > tr {
+table.empList thead > tr {
   background-color: #dddddd;
 }
 
