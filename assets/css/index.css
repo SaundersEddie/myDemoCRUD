@@ -11,6 +11,10 @@ header {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+footer {
+  text-align: center;
+  color: blue;
+}
 body > table {
   width: 80%;
 }
