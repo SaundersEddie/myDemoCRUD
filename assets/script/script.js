@@ -1,8 +1,15 @@
 // EXS 5th November 2020 - edwyn.saunders@outlook.com
 
+var selectedRow = null;
+
 function onFormSubmit() {
     var formData = readFormData();
-    insertNewRecords(formData);
+    if (selectedRow === null) { 
+        insertNewRecords(formData);
+    } else {
+        updateRecord(formData);
+    }
+    resetForm();
 }
 
 function readFormData() {
@@ -20,6 +27,7 @@ function resetForm () {
     document.getElementById("empNumber").value="";
     document.getElementById("empSalary").value="";
     document.getElementById("empLocation").value="";
+    selectedRow = null;
 }
 // CRUD Operations
 function insertNewRecords(data) {
@@ -34,7 +42,28 @@ function insertNewRecords(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.empLocation;
     cell4 = newRow.insertCell(4);
-    cell4.innerHTML = `<a>Edit</a><a>Delete</a>`;
-    resetForm();
+    cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a><a onClick="onDelete(this)">Delete</a>`;
 }
 
+function onEdit(td) {
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("empFullName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("empNumber").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("empSalary").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("empLocation").value = selectedRow.cells[3].innerHTML;
+}
+
+function updateRecord(formData) {
+    selectedRow.cells[0].innerHTML = formData.empFullName;
+    selectedRow.cells[1].innerHTML = formData.empNumber;
+    selectedRow.cells[2].innerHTML = formData.empSalary;
+    selectedRow.cells[3].innerHTML = formData.empLocation;
+}
+
+function onDelete(td) {
+    if (confirm('Sure you wish to delete this record?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("employeeList").deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
