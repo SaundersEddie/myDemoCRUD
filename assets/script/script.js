@@ -15,6 +15,12 @@ function readFormData() {
     return formData;
 }
 
+function resetForm () {
+    document.getElementById("empFullName").value="";
+    document.getElementById("empNumber").value="";
+    document.getElementById("empSalary").value="";
+    document.getElementById("empLocation").value="";
+}
 // CRUD Operations
 function insertNewRecords(data) {
     var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
@@ -29,5 +35,6 @@ function insertNewRecords(data) {
     cell4.innerHTML = data.empLocation;
     cell4 = newRow.insertCell(4);
     cell4.innerHTML = `<a>Edit</a><a>Delete</a>`;
+    resetForm();
 }
 
